@@ -1,8 +1,8 @@
-import image from "./assets/logo.jpg";
 import Meals from "./components/Meals";
 import { useState, useRef } from "react";
 import CartModal from "./components/CartModal";
 import { fetching } from "./fetching";
+import Header from "./components/Header";
 
 function App() {
   const meals = fetching();
@@ -41,13 +41,7 @@ function App() {
   const cartNumber = Object.keys(order).length;
   return (
     <>
-      <main id="main-header">
-        <div id="title">
-          <img src={image} />
-          <h1>REACTFOOD</h1>
-        </div>
-        <button onClick={openModal}>Cart {`(${cartNumber})`}</button>
-      </main>
+      <Header openModal = {openModal} cartNumber = {cartNumber}/>
       <Meals onAdding={handleAdding} meals={meals}  />
       <CartModal ref={modalRef} order={order} meals={meals} onClicking = {handleClicking}/>
     </>
